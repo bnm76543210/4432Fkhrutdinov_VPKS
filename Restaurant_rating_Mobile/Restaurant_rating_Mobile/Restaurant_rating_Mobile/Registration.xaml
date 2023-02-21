@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:Restaurant_rating_Mobile"
+             x:Class="Restaurant_rating_Mobile.Registration">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0">
+            <StackLayout>
+                <Label x:Name="Title_label" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" Padding="30,10,30,10">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="The best app for &#10;"/>
+                                <Span Text="Food Lovers"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <FlexLayout Direction="Column" JustifyContent="Center" Grid.Column="0">
+                        <BoxView HorizontalOptions="CenterAndExpand" HeightRequest="1" Color="Gray" Margin="10,0,0,0"/>
+                    </FlexLayout>
+                    <Label x:Name="SignUp_label" Text="sign up" Grid.Column="1" FontSize="14" HorizontalTextAlignment="Center"/>
+                    <FlexLayout Direction="Column" JustifyContent="Center" Grid.Column="2">
+                        <BoxView HorizontalOptions="CenterAndExpand" HeightRequest="1" Color="Gray" Margin="0,0,10,0"/>
+                    </FlexLayout>
+                </Grid>
+                <Frame x:Name="UserNameFrame" BackgroundColor="Transparent" HeightRequest="40" OutlineColor="Gray" Opacity="0.7" CornerRadius="15" HorizontalOptions="FillAndExpand" Margin="20,0" Padding="15,10" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="9*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="username.png" Aspect="AspectFit" />
+                        <custom:CustomEntry x:Name="Username_textInput" Grid.Column="1" Placeholder="Create username" MaxLength="50" />
+                    </Grid>
+                </Frame>
+                <Label x:Name="UserName_label" Text ="Wrong input" FontSize="12" TextColor="Transparent" Margin="30,0"/>
+                <Frame x:Name="EmailFrame" BackgroundColor="Transparent" HeightRequest="40" OutlineColor="Gray" Opacity="0.7" CornerRadius="15" HorizontalOptions="FillAndExpand" Margin="20,0" Padding="15,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="9*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="email.png" Aspect="AspectFit" />
+                        <custom:CustomEntry x:Name="Email_textInput" Grid.Column="1" Placeholder="Input email" MaxLength="100" Keyboard="Email" />
+                    </Grid>
+                </Frame>
+                <Label x:Name="Email_label" Text ="Wrong input" FontSize="12" TextColor="Transparent" Margin="30,0"/>
+                <Frame x:Name="PasswordFrame" BackgroundColor="Transparent" HeightRequest="40" OutlineColor="Gray" Opacity="0.7" CornerRadius="15" HorizontalOptions="FillAndExpand" Margin="20,0" Padding="15,10" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="9*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="password.png" Aspect="AspectFit" />
+                        <custom:CustomEntry x:Name="Password_textInput" Grid.Column="1" Placeholder="Create password" MaxLength="40" />
+                    </Grid>
+                </Frame>
+                <Label x:Name="Password_label" Text ="Wrong input" FontSize="12" TextColor="Transparent" Margin="30,0"/>
+                <Button x:Name="CheckRegButton" FontSize="16" Margin="40,20" Text="Create account" BorderRadius="20" BorderWidth="2" BorderColor="Aqua" Clicked="Create_Account_Button" />
+            </StackLayout>
+        </ScrollView>
+        <Label x:Name="Inf_label" Text ="Made by Fakhrutdinov Marat" FontSize="12" Grid.Row="1" HorizontalTextAlignment="Center" />
+    </Grid>
+</ContentPage>

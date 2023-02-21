@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:Restaurant_rating_Mobile"
+             xmlns:ia="clr-namespace:IntelliAbb.Xamarin.Controls;assembly=IntelliAbb.Xamarin.Controls"
+             x:Class="Restaurant_rating_Mobile.PageOfRestaurants">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="Adress_Profile_frame" HeightRequest="40" Grid.Row="0" Padding="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Orientation="Horizontal" HeightRequest="40">
+                        <Image Grid.Column="0" Source="location.png" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_location" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label x:Name="location_label" Text ="Your location" FontSize="12" TextColor="Black" TextDecorations="Underline" VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_location" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <ImageButton x:Name="ProfileIMG" Grid.Column="1" Source="username.png" Aspect="AspectFill"  WidthRequest="40" HeightRequest="40"
+                                 CornerRadius="20" HorizontalOptions="End" VerticalOptions="Center"  Padding="-5"
+                                 BorderWidth="1" BorderColor="Black" BackgroundColor="Transparent"  Clicked="Button_profile"/>
+                </Grid>
+                <Frame x:Name="SearchFrame" Grid.Row="1" BackgroundColor="Transparent" HeightRequest="40" OutlineColor="Gray" Opacity="0.7" CornerRadius="15" HorizontalOptions="FillAndExpand" Margin="20,0" Padding="15,5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="9*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="search.png" Aspect="AspectFit" />
+                        <custom:CustomEntry x:Name="Search_textInput" Grid.Column="1" Placeholder="Search" MaxLength="200" InputTransparent="False" TextChanged="Search_restaurant"/>
+                    </Grid>
+                </Frame>
+                <ScrollView Grid.Row="2" HeightRequest="40" Padding="5" Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="10,0">
+                    <StackLayout x:Name="Filters_StackLayout" Orientation="Horizontal">
+                            <Button x:Name="Filters" FontSize="12" Text="Filters" TextColor="Black" BackgroundColor="white" BorderColor="Gray" BorderWidth="2" BorderRadius="10" Clicked="Filters_Button" WidthRequest="100" Margin="5,0"/>
+                            <Button x:Name="Rating_4" FontSize="12" Text="Rating 4.0+" TextColor="Black" BackgroundColor="white" BorderColor="Gray" BorderWidth="2" BorderRadius="10" Clicked="Filter_Button" WidthRequest="100" Margin="5,0"/>
+                            <Button x:Name="Rating_3" FontSize="12" Text="Rating 3.0+" TextColor="Black" BackgroundColor="white" BorderColor="Gray" BorderWidth="2" BorderRadius="10" Clicked="Filter_Button" WidthRequest="100" Margin="5,0"/>
+                            <Button x:Name="Isopen" FontSize="12" Text="Is open" TextColor="Black" BackgroundColor="white" BorderColor="Gray" BorderWidth="2" BorderRadius="10" Clicked="Filter_Button" WidthRequest="100" Margin="5,0"/>
+                        </StackLayout>
+                </ScrollView>
+            </Grid>
+
+            <ScrollView Orientation="Vertical" Grid.Row="1" VerticalScrollBarVisibility="Never">
+                <StackLayout>
+                <Label x:Name="RestaurantsType_label" Text ="Popular restaurants around you" FontSize="14" FontAttributes="Bold" TextColor="Gray" Margin="5,2" HorizontalOptions="Start"/>
+                <BoxView HorizontalOptions = "FillAndExpand" HeightRequest="1" Color="Gray" Margin="5,0"/>
+                <CollectionView x:Name="RestaurantsCollection" Grid.Row="1" VerticalScrollBarVisibility="Never" SelectionMode="Single" 
+                                SelectionChanged="RestaurantsCollection_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Frame x:Name="RestaurantFrame" BackgroundColor="LightGray" CornerRadius="20" Padding="0" Margin="10">
+                                   <StackLayout>
+                                                <Grid>
+                                                    <Image Source = "{Binding Image}" Aspect="Fill" HeightRequest="200"/>
+                                                    <ImageButton x:Name="LikeButton" Source="{Binding Like}" Aspect="AspectFit" 
+                                                VerticalOptions="Start" HorizontalOptions="End"
+                                                BackgroundColor="White" CornerRadius="50" BorderColor="Black" 
+                                                BorderWidth="1" Margin="0,10,10,0" Padding="3"
+                                                HeightRequest="50" WidthRequest="50" Clicked="Like_Button"/>
+                                                </Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width = "*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label x:Name="RestaurantName_label" Text ="{Binding Name}" Grid.Column="0" FontSize="18" FontAttributes="Bold" TextColor="Black" Margin="5,0,5,0" HorizontalOptions="Start"/>
+                                                    <Frame BackgroundColor = "#FFD15A" Padding="10,0" Grid.Column="1 " CornerRadius="10" HorizontalOptions="End" Margin="10,0">
+                                                        <Label Text = "{Binding Score}" FontSize="12" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+                                                    </Frame>
+                                                </Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width = "*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label x:Name="RestaurantTypes_label" Grid.Column="0" Text ="{Binding Cathegories}" FontSize="10" TextColor="Black" Margin="5,-5,5,0" HorizontalOptions="Start"/>
+                                                    <Label x:Name="RestaurantPrice_label" Grid.Column="1" Text ="{Binding AverageBill}" FontSize="10" TextColor="Black" Margin="5,-5,5,0" HorizontalOptions="End"/>
+                                                </Grid>
+                                                <Label x:Name="RestaurantAddress_label" Text ="{Binding Address}" FontSize="10" TextColor="Black" Margin="5,-5,5,10" HorizontalOptions="Start"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+                </StackLayout>
+            </ScrollView>
+           
+            <Label x:Name="Inf_label" Text ="Made by Fakhrutdinov Marat" FontSize="12" Grid.Row="2" HorizontalTextAlignment="Center" />
+        </Grid>
+            <Grid x:Name="ShadowGrid" IsVisible="false" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" >
+            <Grid.RowDefinitions>
+                 <RowDefinition Height="*"/>
+                 <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+                <StackLayout x:Name="UnderSlidingPanel" Grid.Row="0" BackgroundColor="Black" Padding="0" Opacity="0.75">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped = "BackFromFilters" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout x:Name="SlidingPanel" Grid.Row="1" BackgroundColor="White" Padding="-10" >
+                    <StackLayout x:Name="filtersPanel" BackgroundColor="White" HeightRequest="400">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <CollectionView x:Name="RestaurantsTypes" Grid.Row="0" ItemsSource="{Binding types}" VerticalScrollBarVisibility="Never" Margin="20, 5" SelectionMode="Single">
+                            <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Text="{Binding TypeName}" TextColor="Black" BorderColor="Black" BackgroundColor="LightGray"
+                                                       CornerRadius="20" BorderWidth="1" Margin="10"
+                                                       FontAttributes="Bold" FontSize="16" Clicked="Handle_IsCheckedChanged"/>
+                                    </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                            <Grid Margin="20,5" Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="ClearTypes" Grid.Column="0" Text="Clear All" 
+                                        Margin="20,0" BorderRadius="20" BorderWidth="2" HeightRequest="40"
+                                        BorderColor="PaleVioletRed" Clicked="ClearAll"/>
+                                <Button x:Name="FindByNewTypes" Grid.Column="1" Text="Set parametrs" 
+                                        Margin="20,0" BorderRadius="20" BorderWidth="2" HeightRequest="40"
+                                        BorderColor="Aqua" Clicked="SetTypes"/>
+                            </Grid>
+                        </Grid>
+                    </StackLayout>
+            </StackLayout>
+        </Grid>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

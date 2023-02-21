@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Restaurant_rating_Mobile.RestaurantPage">
+    <ContentPage.Content>
+        <Grid x:Name="PageOfRestaurantGrid1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Orientation="Horizontal" Grid.Column="0" HorizontalOptions="Start">
+                    <Image x:Name="Back" Source="back_button.png" HeightRequest="40" WidthRequest="40" Grid.Column="0" HorizontalOptions="Start" Margin="5">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped ="Back_ToRestaurants"/>
+                    </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Back" TextColor="Black" FontSize="16" FontAttributes="Bold"  Grid.Column="0" 
+                           VerticalOptions="Center"  HorizontalOptions="Start" Margin="5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped ="Back_ToRestaurants"/>
+                    </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <Image Grid.Column="1" HorizontalOptions="End" Margin="5">
+                    <Image.GestureRecognizers>
+
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Grid.Column="1" HorizontalOptions="End" Margin="5">
+                    <Image.GestureRecognizers>
+
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <ScrollView Orientation="Vertical" Grid.Row="1" VerticalScrollBarVisibility="Never">
+                <StackLayout>
+                    <Grid Margin="0,0,0,10" BackgroundColor="#FFBFBF">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" Margin="10">
+                            <Label x:Name="RestaurantName" TextColor="Black" FontSize="24" FontAttributes="Bold" Margin="5"/>
+                            <Label x:Name="Specialization" TextColor="Black" FontSize="12" FontAttributes="Bold" Margin="2"/>
+                            <Label x:Name="Address" TextColor="Black" TextDecorations="Underline" FontSize="12" FontAttributes="Bold" Margin="2"/>
+                            <Label x:Name="Link" TextColor="Black" TextDecorations="Underline" FontAttributes="Bold" FontSize="12" Margin="2">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped ="GoToLink"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Button x:Name="IsOpen" TextColor="Green" FontSize="12" Margin="5"
+                                       BackgroundColor="LightGray" CornerRadius="20" BorderColor="Gray"
+                                       VerticalOptions="Center" HorizontalOptions="Start"/>
+                        </StackLayout>
+                        <Frame Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="100" WidthRequest="100" 
+                               CornerRadius="10" Padding="0" Margin="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" BackgroundColor = "#FFD15A">
+                                    <Label x:Name="Score" Text="3.2" TextColor="Black" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Label x:Name="NumberOfReviews" Text="24 reviws" TextColor="Black" FontSize="14" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <Grid Margin="0,0,0,10" BackgroundColor="#FFBFBF">
+                        <StackLayout Margin="0,0,0,10">
+                            <Label x:Name="AboutTheRestaurant" Text="About the restaurant" TextColor="Black" FontSize="20" FontAttributes="Bold" Margin="5"/>
+                            <ScrollView>
+                                <CollectionView x:Name="RestaurantsPhotoCollection" HeightRequest="180" HorizontalOptions="Fill">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Frame x:Name="RestaurantsPhoto" Margin="5" CornerRadius="20" Padding="0" 
+                                                        HeightRequest="180" WidthRequest="240" BackgroundColor="Black">
+                                                    <Image Source="{Binding Photo}" Aspect="AspectFit" />
+                                                </Frame>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </ScrollView>
+                            <Button x:Name="AddPhoto" Text="Add photo" IsVisible="false" TextColor="Firebrick" BackgroundColor="White"
+                                        Margin="20,0" BorderRadius="20" BorderWidth="2" HeightRequest="40" WidthRequest="40"
+                                        BorderColor="PaleVioletRed" Clicked="Add_photo"/>
+                            <Label x:Name="Description" TextColor="Black" HorizontalTextAlignment="Center" FontSize="12" FontAttributes="Bold" Margin="10"/>
+                            <Label x:Name="TimeOfWork" TextColor="Black" FontSize="12" FontAttributes="Bold" Margin="2"/>
+                            <Label x:Name="AverageBill" TextColor="Black" FontSize="12" FontAttributes="Bold" Margin="2"/>
+                            <Label x:Name="Telephone" TextColor="Black" FontSize="12" TextDecorations="Underline" FontAttributes="Bold" Margin="2"/>
+                            <Label x:Name="Email" TextColor="Black" FontSize="12" TextDecorations="Underline" FontAttributes="Bold" Margin="2"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid x:Name="Menu" Margin="0,0,0,10" BackgroundColor="#FFBFBF">
+                        <StackLayout Margin="0,0,0,10">
+                            <Label x:Name="RestMenu" Text="Menu" TextColor="Black" FontSize="20" FontAttributes="Bold" Margin="5"/>
+                            <ScrollView>
+                                <CollectionView x:Name="MenuPhotoCollection" HeightRequest="180" HorizontalOptions="Fill">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Frame x:Name="RestaurantsPhoto" Margin="5" CornerRadius="20" Padding="0" 
+                                                        HeightRequest="180" WidthRequest="100" BackgroundColor="Black">
+                                                    <Image Source="{Binding Menu}" Aspect="AspectFit" />
+                                                </Frame>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </ScrollView>
+                            <Button x:Name="AddMenu" Text="Add photo of menu" IsVisible="false" TextColor="Firebrick" BackgroundColor="White"
+                                        Margin="20,0" BorderRadius="20" BorderWidth="2" HeightRequest="40" WidthRequest="40"
+                                        BorderColor="PaleVioletRed" Clicked="Add_photoMenu"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid x:Name="Reviews" BackgroundColor="#FFBFBF">
+                        <StackLayout Margin="10">
+                            <Label Text="Reviews" TextColor="Black" FontSize="20" FontAttributes="Bold" Margin="5"/>
+                            <Label Text="Recent" TextColor="Black" FontSize="12" FontAttributes="Bold" Margin="5"/>
+                            <ScrollView>
+                                <CollectionView x:Name="ReviewsCollection" HeightRequest="150" HorizontalOptions="Fill">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Frame x:Name="Reviews" Margin="5" CornerRadius="20" Padding="0" BorderColor="Gray"
+                                                        HeightRequest="100" WidthRequest="250" BackgroundColor="White">
+                                                    <Grid>
+                                                        <StackLayout HorizontalOptions="FillAndExpand">
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <ImageButton Source="{Binding Photo}" Margin="10" Aspect="AspectFill" WidthRequest="30" HeightRequest="30"                                                                  
+                                                                     CornerRadius="20" HorizontalOptions="End" VerticalOptions="Center"  Padding="-5" IsEnabled="False"
+                                                                     BorderWidth="1" BorderColor="Black" BackgroundColor="Transparent"/>
+                                                            <Label Text="{Binding Name}" VerticalOptions="Center" TextColor="Black" FontSize="12" FontAttributes="Bold"/>
+                                                            <Frame BackgroundColor = "#FFD15A" Padding="10,10" CornerRadius="10" HorizontalOptions="EndAndExpand" Margin="5">
+                                                                    <Label Text = "{Binding Rating}" FontSize="12" TextColor="Black" FontAttributes="Bold" 
+                                                                       HorizontalOptions="Center" VerticalOptions="Center" Margin="0" Padding="0"/>
+                                                            </Frame>
+                                                        </StackLayout>
+                                                            <Label Text = "{Binding Header}" FontSize="10" TextColor="Black" FontAttributes="Bold" 
+                                                                  Margin="5" HorizontalOptions="Start" VerticalOptions="Start" />
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </Frame>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </ScrollView>
+                            <Button x:Name="SeeAllReviews" Text="See all reviews" TextColor="Green" BackgroundColor="White"
+                                        Margin="20,10" BorderRadius="20" BorderWidth="2" HeightRequest="40" WidthRequest="40"
+                                        BorderColor="LightGreen" Clicked="See_reviews"/>
+                            <Button x:Name="AddReview" Text="Add review" TextColor="Firebrick" BackgroundColor="White"
+                                        Margin="20,0" BorderRadius="20" BorderWidth="2" HeightRequest="40" WidthRequest="40"
+                                        BorderColor="PaleVioletRed" Clicked="Add_review"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
