@@ -46,11 +46,12 @@ namespace Restaurant_rating_Mobile
         }
 
 
-        public List<ToRestImgImport> toRestImgImports = new List<ToRestImgImport>();
-        public List<ToRestMenuImport> toRestMenuImports = new List<ToRestMenuImport>();
-        public List<FullReview> toReview = new List<FullReview>();
-        public List<Timeofwork> timeofworks = new List<Timeofwork>();
-        public List<UsersPhotos> usersPhotos1 = new List<UsersPhotos>();
+        public List<ToRestImgImport> toRestImgImports;
+        public List<ToRestMenuImport> toRestMenuImports;
+        public List<Menuofrestaurant> menuofrestaurants;
+        public static List<FullReview> toReview;
+        public List<Timeofwork> timeofworks;
+        public static List<UsersPhotos> usersPhotos1;
 
         public RestaurantPage()
         {
@@ -71,7 +72,14 @@ namespace Restaurant_rating_Mobile
         {
             Specialization.Text = "";
             RestaurantsPhotoCollection.ItemsSource = null;
+            toRestImgImports = new List<ToRestImgImport>();
+            toRestMenuImports = new List<ToRestMenuImport>();
+            menuofrestaurants = new List<Menuofrestaurant>();
+            toReview = new List<FullReview>();
+            timeofworks = new List<Timeofwork>();
+            usersPhotos1 = new List<UsersPhotos>();
             bool hasTimeTable = false;
+            bool isImportantPerson = false;
             var content = Registration.PostCreateFoundation("gettimetable/?restID=" + PageOfRestaurants.restaurantmain.Id).GetAwaiter().GetResult();
             if (content != null &&
             Regex.Match(content, "Connecting error").Success == false)
@@ -93,6 +101,15 @@ namespace Restaurant_rating_Mobile
             {
                 usersPhotos1 = JsonConvert.DeserializeObject<List<UsersPhotos>>(usersPhotos);
             }
+            var restaurantsmenu_photo = Registration.PostCreateFoundation("getphoto/restmenu").GetAwaiter().GetResult();
+            if (restaurantsmenu_photo != null &&
+            Regex.Match(restaurantsmenu_photo, "Connecting error").Success == false)
+            {
+                if (Regex.Match(restaurantsmenu_photo, "restaurants menu photo does not exist ").Success == false)
+                {
+                    menuofrestaurants = JsonConvert.DeserializeObject<List<Menuofrestaurant>>(restaurantsmenu_photo);
+                }
+            }
             DateTime today = DateTime.Now;
             DayOfWeek dayOfWeek = today.DayOfWeek;
             int checktime = 0;
@@ -111,6 +128,10 @@ namespace Restaurant_rating_Mobile
                     IsOpen.Text = "Closed now";
                     IsOpen.TextColor = Color.Red;
                 }
+            }
+            else
+            {
+                TimeOfWork.IsVisible = false;
             }
             foreach (Typeofrestaurant typeofrestaurant in PageOfRestaurants.typeofrestaurants)
             {
@@ -134,6 +155,11 @@ namespace Restaurant_rating_Mobile
                 {
                     result += review.Rating;
                     quantity++;
+                    if(review.UserId == MainPage.user.Id)
+                    {
+                        AddReview.Text = "Review exist";
+                        AddReview.IsEnabled = false;
+                    }
                 }
             }
             if (quantity > 0)
@@ -189,10 +215,16 @@ namespace Restaurant_rating_Mobile
                         IsOpen.Text = "Open now";
                         IsOpen.TextColor = Color.Green;
                     }
+                    if(MainPage.user.Id != 0)
+                    {
+                        AddReview.IsVisible = true;
+                    }
                     if (MainPage.user.Id != 0 && MainPage.user.Id == restaurant.OwnerId || MainPage.user.Role == "admin")
                     {
                         AddPhoto.IsVisible = true;
                         AddMenu.IsVisible = true;
+                        DeleteRest.IsVisible = true;
+                        isImportantPerson = true;
                     }
                 }
             }
@@ -209,7 +241,7 @@ namespace Restaurant_rating_Mobile
                     toRestImgImports.Add(toRestImgImport);                  
                 }
             }
-            foreach (Menuofrestaurant menuofrestaurant in PageOfRestaurants.menuofrestaurants)
+            foreach (Menuofrestaurant menuofrestaurant in menuofrestaurants)
             {
                 if (PageOfRestaurants.restaurantmain.Id == menuofrestaurant.RestaurantId)
                 {
@@ -253,6 +285,23 @@ namespace Restaurant_rating_Mobile
             ReviewsCollection.ItemsSource = toReview;
             RestaurantsPhotoCollection.ItemsSource = toRestImgImports;
             MenuPhotoCollection.ItemsSource = toRestMenuImports;
+            if (isImportantPerson == false && toRestMenuImports.Count == 0)
+            {
+                Menu.IsVisible = false;
+            }
+            if(toRestImgImports.Count == 0)
+            {
+                RestaurantsPhotoCollection.IsVisible = false;
+            }
+            if (toReview.Count == 0)
+            {
+                SeeAllReviews.IsVisible = false;
+                ReviewsCollection.IsVisible = false;
+            }
+            if (toRestMenuImports.Count == 0)
+            {
+                MenuPhotoCollection.IsVisible = false;
+            }
         }
 
 
@@ -264,9 +313,7 @@ namespace Restaurant_rating_Mobile
                 string r = PageOfRestaurants.LoadRestaurants().GetAwaiter().GetResult();
                 if (r == "succsess")
                 {
-                    //PageOfRestaurants.DrawRestaurants(PageOfRestaurants.restaurantsShort, PageOfRestaurants.collection);
-                    //App.Current.MainPage = new NavigationPage(new PageOfRestaurants());
-                    Navigation.RemovePage(this);                    
+                    App.Current.MainPage = new NavigationPage(new PageOfRestaurants());            
                 }
                 else
                 {
@@ -282,7 +329,7 @@ namespace Restaurant_rating_Mobile
             if (MainPage._canTap)
             {
                 MainPage._canTap = false;
-                Navigation.RemovePage(this);
+
                 await Task.Delay(200);
                 MainPage._canTap = true;
             }
@@ -375,7 +422,7 @@ namespace Restaurant_rating_Mobile
             if (MainPage._canTap)
             {
                 MainPage._canTap = false;
-
+                App.Current.MainPage = new NavigationPage(new AllReviews());
                 await Task.Delay(200);
                 MainPage._canTap = true;
             }
@@ -385,7 +432,32 @@ namespace Restaurant_rating_Mobile
             if (MainPage._canTap)
             {
                 MainPage._canTap = false;
-
+                App.Current.MainPage = new NavigationPage(new Review());
+                await Task.Delay(200);
+                MainPage._canTap = true;
+            }
+        }
+        
+        public async void Delete_restaurant(object sender, EventArgs e)
+        {
+            if (MainPage._canTap)
+            {
+                MainPage._canTap = false;
+                bool result = await DisplayAlert("Delete restaurant", "Are you sure you want to delete data of restaurant", "Delete", "No");
+                if (result == true)
+                {
+                    var deleteRest = Registration.PostCreateFoundation("deleteRest/?restID=" + PageOfRestaurants.restaurantmain.Id).GetAwaiter().GetResult();
+                    if (deleteRest != null &&
+                    Regex.Match(deleteRest, "Connecting error").Success == false &&
+                    Regex.Match(deleteRest, "Restaurant deleted").Success == true)
+                    {
+                        App.Current.MainPage = new NavigationPage(new PageOfRestaurants());
+                    }
+                    else
+                    {
+                        await DisplayAlert("Check connection", "Connection error, please try again later", "OK");
+                    }                   
+                }
                 await Task.Delay(200);
                 MainPage._canTap = true;
             }

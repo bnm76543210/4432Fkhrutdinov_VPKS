@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj": {}
+    "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj": {}
   },
   "projects": {
-    "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj": {
+    "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj",
+        "projectUniqueName": "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj",
         "projectName": "Restaurant_rating_Mobile",
-        "projectPath": "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj",
+        "projectPath": "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj",
         "packagesPath": "C:\\Users\\fakhr\\.nuget\\packages\\",
-        "outputPath": "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\obj\\",
+        "outputPath": "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

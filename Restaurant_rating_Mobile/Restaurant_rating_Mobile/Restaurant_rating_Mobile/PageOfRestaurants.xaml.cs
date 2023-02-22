@@ -47,8 +47,7 @@ namespace Restaurant_rating_Mobile
         public static List<Restaurantstypes> types = new List<Restaurantstypes>();
         public static List<Typeofrestaurant> typeofrestaurants = new List<Typeofrestaurant>();
         public static List<Likeforrestaurant> restaurants_like = new List<Likeforrestaurant>();
-        public static List<Photoofrestaurant> photoofrestaurants = new List<Photoofrestaurant>();
-        public static List<Menuofrestaurant> menuofrestaurants = new List<Menuofrestaurant>();
+        public static List<Photoofrestaurant> photoofrestaurants = new List<Photoofrestaurant>();       
         public static List<Review> reviews = new List<Review>();
         public static List<ShortRestaurantData> restaurantsShort = new List<ShortRestaurantData>();
         public static List<ShortRestaurantData> restaurantsShort1 = new List<ShortRestaurantData>();
@@ -201,6 +200,12 @@ namespace Restaurant_rating_Mobile
             try
             {
                 int a = 0;
+                restaurants.Clear();
+                types.Clear();
+                reviews.Clear();
+                typeofrestaurants.Clear();
+                photoofrestaurants.Clear();
+                restaurants_like.Clear();
                 var content = Registration.PostCreateFoundation("restaurants").GetAwaiter().GetResult();
                 if (content != null &&
                 Regex.Match(content, "Connecting error").Success == false)
@@ -241,7 +246,7 @@ namespace Restaurant_rating_Mobile
                 if (content_reviews != null &&
                 Regex.Match(content_reviews, "Connecting error").Success == false)
                 {
-                    if (Regex.Match(content_types, "Review does not exist ").Success == true)
+                    if (Regex.Match(content_reviews, "Review does not exist ").Success == true)
                     {
                         return "No reviews here";
                     }
@@ -287,24 +292,6 @@ namespace Restaurant_rating_Mobile
                 {
                     return "Connection error, please try again later";
                 }
-                var restaurantsmenu_photo = Registration.PostCreateFoundation("getphoto/restmenu").GetAwaiter().GetResult();
-                if (restaurantsmenu_photo != null &&
-                Regex.Match(restaurantsmenu_photo, "Connecting error").Success == false)
-                {
-                    if (Regex.Match(restaurantsmenu_photo, "restaurants menu photo does not exist ").Success == true)
-                    {
-                        return "restaurants menu photo does not exist ";
-                    }
-                    else
-                    {
-                        menuofrestaurants = JsonConvert.DeserializeObject<List<Menuofrestaurant>>(restaurantsmenu_photo);
-                        a++;
-                    }
-                }
-                else
-                {
-                    return "Connection error, please try again later";
-                }
                 if (MainPage.user.Id != 0)
                 {
                     var restaurant_likes = Registration.PostCreateFoundation("showlikes/?userid=" + MainPage.user.Id).GetAwaiter().GetResult();
@@ -322,7 +309,7 @@ namespace Restaurant_rating_Mobile
                         return "Connection error, please try again later";
                     }
                 }
-                if(a >= 5)
+                if(a >= 1)
                 {
                     return "succsess";
                 }
@@ -416,6 +403,15 @@ namespace Restaurant_rating_Mobile
                             {
                                 await DisplayAlert("Check connection", "Connection error, please try again later", "OK");
                             }
+                        }
+                    }
+                    else
+                    {
+                        bool result = await DisplayAlert("You are not registred", "Do you want to register?", "Yes", "No");
+                        if (result == true)
+                        {
+                            await Navigation.PushModalAsync(new MainPage());
+                            App.Current.MainPage = new NavigationPage(new MainPage());
                         }
                     }
                 }
@@ -712,7 +708,7 @@ namespace Restaurant_rating_Mobile
                     ShortRestaurantData restaurant = (ShortRestaurantData)grid.BindingContext;
                     try
                     {
-                        if (button.Source == ImageSource.FromFile("like_heart.png"))
+                        if (button.Source.ToString() == "File: like_heart.png")
                         {
                             await DisplayAlert("Error", "try", "OK");
                             var content = Registration.PostCreateFoundation("sendrestlike/?userID=" + MainPage.user.Id
@@ -793,8 +789,7 @@ namespace Restaurant_rating_Mobile
                 Rating_4.BackgroundColor = Color.White;
                 restaurantmain = e.CurrentSelection[0] as ShortRestaurantData;
                 RestaurantsCollection.SelectedItem = null;
-                //App.Current.MainPage = new NavigationPage(new PageOfRestaurants());
-                await Navigation.PushAsync(new RestaurantPage());
+                App.Current.MainPage = new NavigationPage(new RestaurantPage());
                 await Task.Delay(200);
                 MainPage._canTap = true;
             }

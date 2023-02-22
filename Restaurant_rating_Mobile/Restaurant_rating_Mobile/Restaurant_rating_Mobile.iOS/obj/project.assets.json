@@ -1635,11 +1635,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.iOS\\Restaurant_rating_Mobile.iOS.csproj",
+      "projectUniqueName": "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.iOS\\Restaurant_rating_Mobile.iOS.csproj",
       "projectName": "Restaurant_rating_Mobile.iOS",
-      "projectPath": "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.iOS\\Restaurant_rating_Mobile.iOS.csproj",
+      "projectPath": "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.iOS\\Restaurant_rating_Mobile.iOS.csproj",
       "packagesPath": "C:\\Users\\fakhr\\.nuget\\packages\\",
-      "outputPath": "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.iOS\\obj\\",
+      "outputPath": "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -1662,8 +1662,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj": {
-              "projectPath": "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj"
+            "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj": {
+              "projectPath": "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj"
             }
           }
         }

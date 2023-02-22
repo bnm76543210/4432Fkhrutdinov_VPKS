@@ -1,12 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:Restaurant_rating_Mobile"             
              x:Class="Restaurant_rating_Mobile.Review">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="#D1F7FF">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Orientation="Horizontal" Grid.Column="0" HorizontalOptions="Start">
+                        <Image x:Name="Back" Source="back_button.png" HeightRequest="40" WidthRequest="40" Grid.Column="0" HorizontalOptions="Start" Margin="5">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped ="Back_ToRestaurant"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Back" TextColor="Black" FontSize="16" FontAttributes="Bold"  Grid.Column="0" 
+                           VerticalOptions="Center"  HorizontalOptions="Start" Margin="5">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped ="Back_ToRestaurant"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+            <ScrollView>
+                <StackLayout>
+                    <Label x:Name="title" Text="Create your review" HorizontalOptions="Center" TextColor="Black" FontSize="24" FontAttributes="Bold" Margin="5"/>
+                    <Frame x:Name="HeaderFrame" BackgroundColor="Transparent" HeightRequest="40" OutlineColor="Gray" Opacity="0.7" CornerRadius="15" HorizontalOptions="FillAndExpand" Margin="20,10" Padding="15,5">
+                        <custom:CustomEntry x:Name="Header_textInput" Placeholder="Header" MaxLength="60" InputTransparent="False"/>
+                    </Frame>
+                    <Frame x:Name="TextFrame" BackgroundColor="Transparent" HeightRequest="120" OutlineColor="Gray" Opacity="0.7" CornerRadius="15" HorizontalOptions="FillAndExpand" Margin="20,0" Padding="15,5">
+                        <Editor x:Name="Text_textInput" Placeholder="Header" MaxLength="350" InputTransparent="False"/>
+                    </Frame>
+                    <Grid Margin="20, 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="choosemark_label" Grid.Column="0" Text="Enter your mark from 1 to 5" TextColor="Black" FontSize="16" VerticalOptions="Center" HorizontalOptions="End" Margin="20,5"/>
+                        <Frame x:Name="MarkFrame" Grid.Column="1" BackgroundColor="Transparent" HeightRequest="40" OutlineColor="LightPink" Opacity="0.7" CornerRadius="15" HorizontalOptions="Start" Padding="15,5">
+                            <Entry x:Name="Mark_textInput" MaxLength="1" FontSize="14" FontAttributes="Bold" InputTransparent="False" Keyboard="Numeric"/>
+                        </Frame>
+                    </Grid>
+                    <Button x:Name="AddReview" Text="Add review" TextColor="Firebrick" BackgroundColor="White"
+                                        Margin="20,0" BorderRadius="20" BorderWidth="2" HeightRequest="40" WidthRequest="40"
+                                        BorderColor="PaleVioletRed" Clicked="Add_review"/>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

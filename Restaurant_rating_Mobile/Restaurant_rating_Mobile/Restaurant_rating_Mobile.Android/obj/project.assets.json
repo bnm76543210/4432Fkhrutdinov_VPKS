@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "MonoAndroid,Version=v10.0": {
+    "MonoAndroid,Version=v12.0": {
       "IntelliAbb.Xamarin.Controls/1.0.148": {
         "type": "package",
         "dependencies": {
@@ -3518,7 +3518,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "MonoAndroid,Version=v10.0": [
+    "MonoAndroid,Version=v12.0": [
       "IntelliAbb.Xamarin.Controls >= 1.0.148",
       "Restaurant_rating_Mobile >= 1.0.0",
       "Xamarin.Essentials >= 1.7.0",
@@ -3534,11 +3534,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.Android\\Restaurant_rating_Mobile.Android.csproj",
+      "projectUniqueName": "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.Android\\Restaurant_rating_Mobile.Android.csproj",
       "projectName": "Restaurant_rating_Mobile.Android",
-      "projectPath": "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.Android\\Restaurant_rating_Mobile.Android.csproj",
+      "projectPath": "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.Android\\Restaurant_rating_Mobile.Android.csproj",
       "packagesPath": "C:\\Users\\fakhr\\.nuget\\packages\\",
-      "outputPath": "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.Android\\obj\\",
+      "outputPath": "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -3552,24 +3552,24 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "monoandroid10.0"
+        "monoandroid12.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "monoandroid10.0": {
+        "monoandroid12.0": {
           "projectReferences": {
-            "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj": {
-              "projectPath": "D:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj"
+            "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj": {
+              "projectPath": "F:\\Restaurant_rating_mobileApp\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile\\Restaurant_rating_Mobile.csproj"
             }
           }
         }
       }
     },
     "frameworks": {
-      "monoandroid10.0": {
+      "monoandroid12.0": {
         "dependencies": {
           "IntelliAbb.Xamarin.Controls": {
             "target": "Package",

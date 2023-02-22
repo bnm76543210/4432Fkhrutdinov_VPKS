@@ -15,7 +15,8 @@
           "Xam.Plugin.Connectivity": "3.2.0",
           "Xamarin.Essentials": "1.7.0",
           "Xamarin.Forms": "5.0.0.2196",
-          "Xamarin.Forms.Visual.Material": "4.8.0.1451"
+          "Xamarin.Forms.Visual.Material": "4.8.0.1451",
+          "System.Drawing.Common": "4.0.0.0"
         },
         "runtime": {
           "Restaurant_rating_Mobile.dll": {}
@@ -120,6 +121,14 @@
         "dependencies": {
           "Xamarin.Forms": "5.0.0.2196"
         }
+      },
+      "System.Drawing.Common/4.0.0.0": {
+        "runtime": {
+          "System.Drawing.Common.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
       }
     }
   },
@@ -205,6 +214,11 @@
       "sha512": "sha512-QLei1etT+z8jpYOnkSlt4JiCyjSoXImVEc7sE0X33lYTOScaiECbNk2EyZ5fP7EkiB2IFYvVHRVR1rNnBL+e1g==",
       "path": "xamarin.forms.visual.material/4.8.0.1451",
       "hashPath": "xamarin.forms.visual.material.4.8.0.1451.nupkg.sha512"
+    },
+    "System.Drawing.Common/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

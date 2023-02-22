@@ -14,7 +14,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackLayout Orientation="Horizontal" Grid.Column="0" HorizontalOptions="Start">
-                    <Image x:Name="Back" Source="back_button.png" HeightRequest="40" WidthRequest="40" Grid.Column="0" HorizontalOptions="Start" Margin="5">
+                    <Image x:Name="Back" Source="back_button.png" HeightRequest="40" WidthRequest="40" HorizontalOptions="Start" Margin="5">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped ="Back_ToRestaurants"/>
                     </Image.GestureRecognizers>
@@ -26,16 +26,13 @@
                     </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>
-                <Image Grid.Column="1" HorizontalOptions="End" Margin="5">
-                    <Image.GestureRecognizers>
-
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image Grid.Column="1" HorizontalOptions="End" Margin="5">
-                    <Image.GestureRecognizers>
-
-                    </Image.GestureRecognizers>
-                </Image>
+                <StackLayout Orientation="Horizontal" Grid.Column="1" HorizontalOptions="End">
+                    <Image x:Name="DeleteRest" Source="dots.png" HeightRequest="40" WidthRequest="40" HorizontalOptions="End" IsVisible="false" Margin="5">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped ="Delete_restaurant"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
             </Grid>
             <ScrollView Orientation="Vertical" Grid.Row="1" VerticalScrollBarVisibility="Never">
                 <StackLayout>
@@ -129,7 +126,7 @@
                         </StackLayout>
                     </Grid>
                     <Grid x:Name="Reviews" BackgroundColor="#FFBFBF">
-                        <StackLayout Margin="10">
+                        <StackLayout Margin="0, 10">
                             <Label Text="Reviews" TextColor="Black" FontSize="20" FontAttributes="Bold" Margin="5"/>
                             <Label Text="Recent" TextColor="Black" FontSize="12" FontAttributes="Bold" Margin="5"/>
                             <ScrollView>
@@ -169,7 +166,7 @@
                                         BorderColor="LightGreen" Clicked="See_reviews"/>
                             <Button x:Name="AddReview" Text="Add review" TextColor="Firebrick" BackgroundColor="White"
                                         Margin="20,0" BorderRadius="20" BorderWidth="2" HeightRequest="40" WidthRequest="40"
-                                        BorderColor="PaleVioletRed" Clicked="Add_review"/>
+                                        BorderColor="PaleVioletRed" IsVisible="false" Clicked="Add_review"/>
                         </StackLayout>
                     </Grid>
                 </StackLayout>

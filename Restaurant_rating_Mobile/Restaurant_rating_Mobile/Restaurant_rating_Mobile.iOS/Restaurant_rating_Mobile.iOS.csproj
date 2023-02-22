@@ -73,6 +73,9 @@
     <ImageAsset Include="Assets.xcassets\back_button.imageset\back_button.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dots.imageset\dots.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\Email.imageset\email11.png">
       <Visible>false</Visible>
     </ImageAsset>
@@ -86,6 +89,9 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\back_button.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dots.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\redlike_heart.imageset\Contents.json">
